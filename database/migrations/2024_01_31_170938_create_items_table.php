@@ -13,7 +13,15 @@ return new class extends Migration
     {
         Schema::create('items', function (Blueprint $table) {
             $table->id();
+            $table->integer('group');
+            $table->string('mark');
+            $table->string('unit');
+            $table->string('name',100);
+            $table->integer('partner')->nullable();
+            $table->integer('active')->default(1);
             $table->timestamps();
+            //done
+     
         });
     }
 
