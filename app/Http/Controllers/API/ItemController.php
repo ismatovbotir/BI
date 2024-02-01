@@ -4,6 +4,8 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Item;
+use App\Http\Resources\ItemResource;
 
 class ItemController extends Controller
 {
@@ -12,7 +14,7 @@ class ItemController extends Controller
      */
     public function index()
     {
-        //
+        return ItemResource::collection(Item::all());
     }
 
     /**
@@ -20,7 +22,8 @@ class ItemController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $item=Item::create($request->all());
+        return $item->id();
     }
 
     /**
@@ -28,7 +31,7 @@ class ItemController extends Controller
      */
     public function show(string $id)
     {
-        //
+        return new ItemResource(Item::findOrFail($id));
     }
 
     /**
