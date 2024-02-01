@@ -4,18 +4,17 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Item;
-use App\Http\Resources\ItemResource;
+use App\Http\Resources\GroupResource;
+use App\Models\Group;
 
-class ItemController extends Controller
+class GroupController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    protected $storeCount=0;
     public function index()
     {
-        return ItemResource::collection(Item::all());
+        return GroupResource::collection(Group::all());
     }
 
     /**
@@ -23,12 +22,7 @@ class ItemController extends Controller
      */
     public function store(Request $request)
     {
-        $items=$request->all();
-        
-            $newItem=Item::insert($items);
-           
-       
-        return Count($items);
+        //
     }
 
     /**
@@ -36,7 +30,7 @@ class ItemController extends Controller
      */
     public function show(string $id)
     {
-        return new ItemResource(Item::findOrFail($id));
+        //
     }
 
     /**
