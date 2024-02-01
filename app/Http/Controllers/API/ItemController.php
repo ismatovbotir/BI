@@ -12,6 +12,7 @@ class ItemController extends Controller
     /**
      * Display a listing of the resource.
      */
+    protected $storeCount=0;
     public function index()
     {
         return ItemResource::collection(Item::all());
@@ -22,8 +23,13 @@ class ItemController extends Controller
      */
     public function store(Request $request)
     {
-        $item=Item::create($request->all());
-        return $item->id();
+        $items=$request->all();
+        foreach($items as $item){
+
+            $newItem=Item::create($item);
+            $this->storeCount=$this->storeCount+1;
+        }
+        return $this->storeCount;
     }
 
     /**
